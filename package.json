@@ -1,0 +1,28 @@
+{
+  "name": "challenge_10-user_informed_logo_generator",
+  "version": "1.0.0",
+  "description": "This application prompts the user for shape, color, and text input to generate an SVG logo.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GimmeKitties711/challenge_10-user_informed_logo_generator.git"
+  },
+  "keywords": [
+    "logo",
+    "user",
+    "svg"
+  ],
+  "author": "GimmeKitties711",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GimmeKitties711/challenge_10-user_informed_logo_generator/issues"
+  },
+  "homepage": "https://github.com/GimmeKitties711/challenge_10-user_informed_logo_generator#readme",
+  "dependencies": {
+    "inquirer": "^9.2.11",
+    "jest": "^29.7.0"
+  }
+}
