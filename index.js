@@ -19,7 +19,7 @@ let questions = [
     {
         type: "input",
         name: "text_color",
-        message: "Enter the color of the text. Can be any valid CSS color or hex code.",
+        message: "Enter the color of the text. Can be any valid CSS color or hex code. If you enter a hex code, please include the #. If you enter an invalid color, it will be rendered as black by default.",
         validate: function(answer) {
             if (answer.length < 1) {
                 return "Please enter a color.";
@@ -36,7 +36,7 @@ let questions = [
     {
         type: "input",
         name: "shape_color",
-        message: "Enter the color of the shape. Can be any valid CSS color or hex code.",
+        message: "Enter the color of the shape. Can be any valid CSS color or hex code. If you enter a hex code, please include the #. If you enter an invalid color, it will be rendered as black by default.",
         validate: function(answer) {
             if (answer.length < 1) {
                 return "Please enter a color.";
@@ -76,7 +76,7 @@ function processStringComponent(component) {
 }
 
 function processRenderComponent(component) {
-    processedComponent = component.replace(/[\u0026]/g, "_");
+    processedComponent = component.replace(/[\u003c*\u0026*]/g, "_");
     // this RegExp does a global search (through the whole component) and for every character where there is at least one instance of an ampersand (\u0026), it is replaced with an underscore.
     // the ampersand causes rendering problems when the svg file is opened with Live Server, so I have decided to replace it with an underscore
     return processedComponent;
