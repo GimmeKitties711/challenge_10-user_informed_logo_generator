@@ -77,8 +77,8 @@ function processStringComponent(component) {
 
 function processRenderComponent(component) {
     processedComponent = component.replace(/[\u003c*\u0026*]/g, "_");
-    // this RegExp does a global search (through the whole component) and for every character where there is at least one instance of an ampersand (\u0026), it is replaced with an underscore.
-    // the ampersand causes rendering problems when the svg file is opened with Live Server, so I have decided to replace it with an underscore
+    // this RegExp does a global search (through the whole component) and for every character where there is at least one instance of a less than sign (\u003c) or an ampersand (\u0026), it is replaced with an underscore.
+    // the less than sign and the ampersand cause rendering problems when the svg file is opened with Live Server, so I have decided to replace them with underscores
     return processedComponent;
 }
 
