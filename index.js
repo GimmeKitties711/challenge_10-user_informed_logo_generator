@@ -57,12 +57,18 @@ function processStringComponent(component) {
     the component is included in the file name, so if the component contains any of the forbidden characters, they need to be filtered out. I have decided to change all of them to a dash (-).
     */
 
-    processedComponent = component.replace(/[\u005e*\u0025*\u0023*\u0020*\u0009*]/g, "_");
+    processedComponent = component.replace(/[\u0020*\u0009*]/g, "_");
     /*
-    this RegExp does a global search (through the whole component) and for every character where there is at least one instance of a caret (\u005e), a percent sign (\u0025), a hashtag (\u0023), a space (\u0020), or a tab character (\u0009), it is replaced with an underscore.
+    this RegExp does a global search (through the whole component) and for every character where there is at least one instance of a space (\u0020) or a tab character (\u0009), it is replaced with an underscore.
 
-    1. carets, percent signs and hashtags cause url problems when the svg file is opened with Live Server, so I have decided to replace them with underscores
-    2. although spaces are allowed in filenames, I have decided to replace them because they could be problematic for file handling systems, source: https://superuser.com/questions/29111/what-technical-reasons-exist-for-not-using-space-characters-in-file-names
+    although spaces are allowed in filenames, I have decided to replace them because they could be problematic for file handling systems, source: https://superuser.com/questions/29111/what-technical-reasons-exist-for-not-using-space-characters-in-file-names
+    */
+
+    processedComponent = processedComponent.replace(/[\u005e*\u0025*\u0023*]/g, "-");
+    /*
+    this RegExp does a global search and for every character where there is at least one instance of a caret (\u005e), a percent sign (\u0025), or a hashtag (\u0023), it is replaced with a dash.
+
+    I have decided to replace carets, percent signs and hashtags as they cause url problems when the svg file is opened with Live Server
     */
 
     // source for how to use RegExp: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
@@ -76,7 +82,7 @@ function processStringComponent(component) {
 }
 
 function processRenderComponent(component) {
-    processedComponent = component.replace(/[\u003c*\u0026*]/g, "_");
+    processedComponent = component.replace(/[\u003c*\u0026*]/g, "-");
     // this RegExp does a global search (through the whole component) and for every character where there is at least one instance of a less than sign (\u003c) or an ampersand (\u0026), it is replaced with an underscore.
     // the less than sign and the ampersand cause rendering problems when the svg file is opened with Live Server, so I have decided to replace them with underscores
     return processedComponent;
@@ -125,3 +131,5 @@ function init() {
 }
 
 init();
+
+module.exports = { processStringComponent, processRenderComponent }
