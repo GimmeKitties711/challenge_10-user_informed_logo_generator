@@ -24,7 +24,7 @@ Then, type and enter the command `npm install`:
 
 and the following packages will be installed:
 
-`inquirer @8.2.4`
+`inquirer @8.2.4`<br>
 `jest @29.7.0`
 
 ## Usage
