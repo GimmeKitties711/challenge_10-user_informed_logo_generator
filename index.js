@@ -46,45 +46,47 @@ let questions = [
     }
 ]
 
-// this function is inspired by processTitleString() from Challenge 9: https://github.com/GimmeKitties711/challenge_9-user_informed_readme_generator
+// this function is inspired by processTitleString(), which I wrote in Challenge 9: https://github.com/GimmeKitties711/challenge_9-user_informed_readme_generator
 function processStringComponent(component) {
     /*
-    the purpose of this function is to filter out characters that are not allowed in file names:
+    this function filters out characters that are not allowed in file names.
 
-    A file name can't contain any of the following characters:
+    a file name cannot contain any of the following characters:
     \ / : * ? " < > |
 
-    the component is included in the file name, so if the component contains any of the forbidden characters, they need to be filtered out. I have decided to change all of them to a dash (-).
+    the string component, which is based on the user's responses, is included in the file name. if the component contains any of the forbidden characters, they need to be filtered out. I have decided to change all of them to a dash (-).
+
+    this function also filters out characters that cause problems when the svg file is opened with Live Server. this will be explained in more detail in the comments below.
     */
 
     processedComponent = component.replace(/[\u0020*\u0009*]/g, "_");
     /*
-    this RegExp does a global search (through the whole component) and for every character where there is at least one instance of a space (\u0020) or a tab character (\u0009), it is replaced with an underscore.
+    this regex does a global search (through the whole component) and for every character where there is at least one instance of a space (\u0020) or a tab character (\u0009), it is replaced with an underscore
 
     although spaces are allowed in filenames, I have decided to replace them because they could be problematic for file handling systems, source: https://superuser.com/questions/29111/what-technical-reasons-exist-for-not-using-space-characters-in-file-names
     */
 
     processedComponent = processedComponent.replace(/[\u005e*\u0025*\u0023*]/g, "-");
     /*
-    this RegExp does a global search and for every character where there is at least one instance of a caret (\u005e), a percent sign (\u0025), or a hashtag (\u0023), it is replaced with a dash.
+    this regex does a global search and for every character where there is at least one instance of a caret (\u005e), a percent sign (\u0025), or a hashtag (\u0023), it is replaced with a dash
 
-    I have decided to replace carets, percent signs and hashtags as they cause url problems when the svg file is opened with Live Server
+    I have decided to replace carets, percent signs and hashtags because they cause url problems when the svg file is opened with Live Server
     */
 
-    // source for how to use RegExp: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
+    // source for how to use regex: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
     // source for special character unicode: https://owasp.org/www-community/password-special-characters
     // source for tab character unicode: https://stackoverflow.com/questions/9660987/how-to-get-a-tab-character
 
     processedComponent = processedComponent.replace(/[\\*\/*\:*\**\?*\"*\<*\>*\|*]/g, "-"); // replaces all forbidden characters with dashes
-    // source for the replace method in strings: https://www.w3schools.com/jsref/jsref_replace.asp
+    // source for the replace() method in strings: https://www.w3schools.com/jsref/jsref_replace.asp
 
     return processedComponent;
 }
 
 function processRenderComponent(component) {
     processedComponent = component.replace(/[\u003c*\u0026*]/g, "-");
-    // this RegExp does a global search (through the whole component) and for every character where there is at least one instance of a less than sign (\u003c) or an ampersand (\u0026), it is replaced with an underscore.
-    // the less than sign and the ampersand cause rendering problems when the svg file is opened with Live Server, so I have decided to replace them with underscores
+    // this regex does a global search and for every character where there is at least one instance of a less than sign (\u003c) or an ampersand (\u0026), it is replaced with a dash
+    // I have decided to replace less than signs and ampersands because they cause rendering problems when the svg file is opened with Live Server
     return processedComponent;
 }
 
@@ -95,17 +97,17 @@ function init() {
         for every shape, we need to do the following:
 
         1. create a new instance of the shape class
-        2. call the render method on the shape instance
-        3. write the result of the render method to a file
+        2. call the class's render() method on the instance
+        3. write the result of the render() method to a file
         */
         if (responses.shape === "circle") {
-            // create a new instance of the circle class
+            // create a new instance of the Circle class
             const circle = new Circle(processRenderComponent(responses.logo_text), responses.text_color, responses.shape_color);
-            // processRenderComponent removes problematic characters (< &) from the logo text
+            // processRenderComponent() removes problematic characters (< &) from the logo text
             const svg = circle.render();
-            // write the file name as `./examples/[logo text]_[shape color]_[shape].svg`
+            // write the file name as './examples/[logo text]_[shape color]_[shape].svg'
             fs.writeFile(`./examples/${processStringComponent(responses.logo_text)}_${processStringComponent(responses.shape_color)}_circle.svg`, svg, (err) => {
-            // processStringComponent removes problematic characters from the file name. you can find a comprehensive list of problematic characters in the function definition
+            // processStringComponent() removes problematic characters from the file name. you can find a comprehensive list of them in the function definition.
                 if (err) {
                     console.log(err);
                 } else { // if there is no error
@@ -136,4 +138,4 @@ function init() {
     });
 }
 
-init(); // the initialization function is called here so that it runs when the file is executed with node index.js
+init(); // the initialization function is called here so that it runs when this file is executed with 'node index.js'
