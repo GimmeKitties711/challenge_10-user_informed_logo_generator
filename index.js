@@ -111,7 +111,7 @@ function init() {
                 if (err) {
                     console.log(err);
                 } else { // if there is no error
-                    console.log('Your SVG file has been created successfully.')
+                    console.log('Your SVG file has been created successfully.');
                 }
             });
         } else if (responses.shape === "square") {
@@ -121,7 +121,7 @@ function init() {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log('Your SVG file has been created successfully.')
+                    console.log('Your SVG file has been created successfully.');
                 }
             });
         } else if (responses.shape === "triangle") {
@@ -131,7 +131,7 @@ function init() {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log('Your SVG file has been created successfully.')
+                    console.log('Your SVG file has been created successfully.');
                 }
             });
         }
