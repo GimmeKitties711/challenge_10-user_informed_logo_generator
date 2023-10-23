@@ -1,7 +1,7 @@
-# Challenge 10
+# Challenge 10: User-informed Logo Generator
 
 ## Description
-When you create a project, you might want to have a simple logo to go along with it to make your project unique. This application prompts the user for the logo text, text color, shape, and shape color that they would like to use for their logo. It then uses that information to create a Scalable Vector Graphics (SVG) image that reflects the user's choices. This project taught me how to write tests for functions contained in classes, render an SVG file, and use inheritance to transfer properties from a parent class to its child classes.
+When you create a project, you might want to use a logo to make your project unique. This application prompts the user for the text, text color, shape, and shape color that they would like to use in their logo. It then uses that information to create a Scalable Vector Graphics (SVG) image that reflects the user's choices. This project taught me how to write tests for functions contained in classes, render an SVG file, and use inheritance to transfer properties from a parent class to its child classes.
 
 ## Table of Contents
 - [Description](#description)
@@ -14,11 +14,11 @@ When you create a project, you might want to have a simple logo to go along with
 - [Questions](#questions)
 
 ## Installation
-Once you clone the repository onto your own computer, open the `package.json` file in the Integrated Terminal, as shown below:
+Once you clone the repository onto your own computer, right click the `package.json` file to open it in the Integrated Terminal, as shown below:
 
 ![Open package.json in Integrated Terminal](Images/open_package_json_in_integrated_terminal.png)
 
-and then type and enter the command `npm install`:
+Then, type and enter the command `npm install`:
 
 ![Install packages](Images/package_json_and_npm_install.png)
 
@@ -28,7 +28,7 @@ and the following packages will be installed:
 `jest @29.7.0`
 
 ## Usage
-Once you have opened the root directory in the Integrated Terminal, you can run tests to see if the shape classes' `render()` functions are working properly, and you can also submit answers to create a new svg file. To run the tests, type
+Once you have opened the root directory in the terminal, you can run tests to see if the shape classes' `render()` functions are working properly, and you can also submit answers to create a new svg file. To run the tests, type
 
 `npm test`
 
@@ -40,19 +40,26 @@ To create a new svg file, type
 
 `node index.js`
 
-in the terminal. You will be asked to enter the logo text (up to three characters), text color, shape, and shape color that you would like your svg logo to have:
+in the terminal. You will be asked to enter the:
+
+1. **text** (up to three characters),
+2. **text color** (must be a valid CSS color or hex code),
+3. **shape** (circle, square, or triangle), and
+4. **shape color** (must be a valid CSS color or hex code)
+
+that you would like your svg logo to use:
 
 ![Inquirer prompts and user responses](Images/new_svg_file_successfully_created.png)
 
-Once you have answered all four questions, the new file will appear in the examples folder. The format for the file names is:
+Once you have answered all four questions, the new file will appear in the examples folder. The format of the file names is:
 
 `[logo text]_[shape color]_[shape].svg`
 
-The files are written this way to avoid overwriting previous files as new ones are created. Once the new file has been generated, you can right click on it and select `Open with Live Server`:
+The files are written this way to avoid overwriting previous files as new ones are created. Once a new file has been generated, you can select `Open with Live Server`:
 
 ![Open svg with Live Server](Images/open_svg_with_live_server.png)
 
-which will open it in the browser:
+This action will open it in the browser:
 
 ![svg opened in browser](Images/svg_opened_in_browser.png)
 
