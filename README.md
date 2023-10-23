@@ -1,7 +1,7 @@
 # Challenge 10
 
 ## Description
-When you create a project, the code might be good but you might also want a simple logo to go along with it. That way, you can have a project that has a unique image that makes your project unique. This application prompts the user for input about the text, text color, shape, and shape color that they would like to use for their logo and uses that information to create a Scalable Vector Graphics image that matches the user's choices. This project taught me how to write tests for functions contained in classes, render an SVG file, and use inheritance to transfer properties from a parent class to its child classes.
+When you create a project, you might want to have a simple logo to go along with it to make your project unique. This application prompts the user for the logo text, text color, shape, and shape color that they would like to use for their logo. It then uses that information to create a Scalable Vector Graphics (SVG) image that reflects the user's choices. This project taught me how to write tests for functions contained in classes, render an SVG file, and use inheritance to transfer properties from a parent class to its child classes.
 
 ## Table of Contents
 - [Description](#description)
@@ -14,34 +14,61 @@ When you create a project, the code might be good but you might also want a simp
 - [Questions](#questions)
 
 ## Installation
-Once you download the repository, open the package.json file in the integrated terminal
+Once you clone the repository onto your own computer, open the `package.json` file in the Integrated Terminal, as shown below:
 
 ![Open package.json in Integrated Terminal](Images/open_package_json_in_integrated_terminal.png)
 
-and then once you do that you should type npm install
+and then type and enter the command `npm install`:
 
 ![Install packages](Images/package_json_and_npm_install.png)
 
-and the packages inquirer and jest will be installed.
+and the following packages will be installed:
+
+`inquirer @8.2.4`
+`jest @29.7.0`
 
 ## Usage
-once you have opened the root directory in the integrated terminal, you can do two things: 1. you can run tests to see if the render() function of the shape classes is working properly 2. you can create a new svg file thingy. to run the tests type the command `npm test` in the terminal, and the functions in `lib/shapes.test.js` will be executed:
+Once you have opened the root directory in the Integrated Terminal, you can run tests to see if the shape classes' `render()` functions are working properly, and you can also submit answers to create a new svg file. To run the tests, type
+
+`npm test`
+
+in the terminal, and the functions in `lib/shapes.test.js` will be executed:
 
 ![Shapes tests passing](Images/shapes_test_passing.png)
 
-to create a new svg file, type `node index.js` into the terminal. You will be asked to enter the text (up to three characters), the text color, the shape, and the shape color that you would like your svg logo to be:
+To create a new svg file, type
+
+`node index.js`
+
+in the terminal. You will be asked to enter the logo text (up to three characters), text color, shape, and shape color that you would like your svg logo to have:
 
 ![Inquirer prompts and user responses](Images/new_svg_file_successfully_created.png)
 
-once you have answered all 4 questions, the new file will appear in the examples folder with the title text_color_shape.svg. (include new file being created in last pic) once you click on the new file, you can right click on it and select open with live server
+Once you have answered all four questions, the new file will appear in the examples folder. The format for the file names is:
+
+`[logo text]_[shape color]_[shape].svg`
+
+The files are written this way to avoid overwriting previous files as new ones are created. Once the new file has been generated, you can right click on it and select `Open with Live Server`:
 
 ![Open svg with Live Server](Images/open_svg_with_live_server.png)
 
-and then you can view it in the browser
+which will open it in the browser:
 
 ![svg opened in browser](Images/svg_opened_in_browser.png)
 
-The link to a walkthrough video demonstrating the application can be found [here](https://youtu.be/GhaqBli3blc)
+You can also create svg files with uppercase letters:
+
+![Uppercase letters svg](Images/uppercase_letters_svg.png)
+
+numbers:
+
+![Numbers svg](Images/numbers_svg.png)
+
+and special characters:
+
+![Special characters svg](Images/special_characters_svg.png)
+
+A walkthrough video that demonstrates the application can be found [here](https://youtu.be/GhaqBli3blc).
 
 ## Credits
 Received assistance from instructor Robbert Wijtman in the *#02-ask-the-class* Slack channel.
@@ -55,16 +82,19 @@ The following web resources helped me write the code for this project:
 5. [Stack Overflow: How to get a tab character's unicode](https://stackoverflow.com/questions/9660987/how-to-get-a-tab-character)
 6. [The replace() method](https://www.w3schools.com/jsref/jsref_replace.asp)
 7. [How to add a border to svg shapes](https://www.w3schools.com/graphics/svg_polygon.asp)
+8. [How to use toContain()](https://jestjs.io/docs/expect#tocontainitem)
 
 ## Contributing
 No contribution is necessary for this project.
 
 ## Tests
-Run npm test from the root directory to activate the tests written in lib/shapes.test.js
+Run `npm test` from the root directory to activate the tests written in `lib/shapes.test.js`:
 
 ![Shapes test code](Images/shapes_test_code.png)
 
-see usage or something idk
+If the tests pass, the terminal should show the following messages:
+
+![Shapes tests passing](Images/shapes_test_passing.png)
 
 ## License
 No license is attached to this repository.
