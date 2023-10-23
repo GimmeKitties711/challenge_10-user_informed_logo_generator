@@ -1,16 +1,16 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const { Circle, Square, Triangle } = require('./lib/shapes');
+const { Circle, Square, Triangle } = require('./lib/shapes'); // import the classes from lib/shapes.js
 
 let questions = [
     {
         type: "input",
-        name: "logo_text",
+        name: "logo_text", // will be referenced as responses.logo_text
         message: "Enter the text that you would like your logo to display. Can be up to 3 characters.",
         validate: function(answer) {
-            if (answer.length < 1) {
+            if (answer.length < 1) { // if the user tries to proceed without entering any characters
                 return "Please enter at least 1 character.";
-            } else if (answer.length > 3) {
+            } else if (answer.length > 3) { // if the user enters at least 4 characters
                 return "Please enter at most 3 characters.";
             }
             return true;
@@ -18,7 +18,7 @@ let questions = [
     },
     {
         type: "input",
-        name: "text_color",
+        name: "text_color", // will be referenced as responses.text_color
         message: "Enter the color of the text. Can be any valid CSS color or hex code. If you enter a hex code, please include the #. If you enter an invalid color, it will be rendered as black by default.",
         validate: function(answer) {
             if (answer.length < 1) {
@@ -29,13 +29,13 @@ let questions = [
     },
     {
         type: "list",
-        name: "shape",
+        name: "shape", // will be referenced as responses.shape
         message: "Select the shape of your logo. You can choose from a circle, square, or triangle.",
         choices: ["circle", "square", "triangle"],
     },
     {
         type: "input",
-        name: "shape_color",
+        name: "shape_color", // will be referenced as responses.shape_color
         message: "Enter the color of the shape. Can be any valid CSS color or hex code. If you enter a hex code, please include the #. If you enter an invalid color, it will be rendered as black by default.",
         validate: function(answer) {
             if (answer.length < 1) {
@@ -91,18 +91,24 @@ function processRenderComponent(component) {
 function init() {
     inquirer.prompt(questions).then(responses => {
         console.log(responses);
-        // responses.shape
-        // we need to create a new instance of the shape class
-        // we need to call the render method on the shape class
-        // we need to write the result of the render method to a file
+        /*
+        for every shape, we need to do the following:
+
+        1. create a new instance of the shape class
+        2. call the render method on the shape instance
+        3. write the result of the render method to a file
+        */
         if (responses.shape === "circle") {
-            // get the render method from the circle class
+            // create a new instance of the circle class
             const circle = new Circle(processRenderComponent(responses.logo_text), responses.text_color, responses.shape_color);
+            // processRenderComponent removes problematic characters (< &) from the logo text
             const svg = circle.render();
+            // write the file name as `./examples/[logo text]_[shape color]_[shape].svg`
             fs.writeFile(`./examples/${processStringComponent(responses.logo_text)}_${processStringComponent(responses.shape_color)}_circle.svg`, svg, (err) => {
+            // processStringComponent removes problematic characters from the file name. you can find a comprehensive list of problematic characters in the function definition
                 if (err) {
                     console.log(err);
-                } else {
+                } else { // if there is no error
                     console.log('Your SVG file has been created successfully.')
                 }
             });
@@ -130,6 +136,4 @@ function init() {
     });
 }
 
-init();
-
-module.exports = { processStringComponent, processRenderComponent }
+init(); // the initialization function is called here so that it runs when the file is executed with node index.js
